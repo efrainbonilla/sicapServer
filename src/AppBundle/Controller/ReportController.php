@@ -64,7 +64,7 @@ class ReportController extends Controller
      */
     public function initialize()
     {
-        $this->jasper = new JasperPHP;
+        $this->jasper = new JasperPHPCustom;
 
         $rootDir = $this->getParameter('kernel.root_dir');
 

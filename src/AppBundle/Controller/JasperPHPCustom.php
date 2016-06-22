@@ -1,9 +1,9 @@
 <?php
 namespace AppBundle\Controller;
 
-use JasperPHP\JasperPHP as OriginalJasperPHP;
+use JasperPHP\JasperPHP;
 
-class JasperPHP extends OriginalJasperPHP
+class JasperPHPCustom extends JasperPHP
 {
     public function noscape()
     {
