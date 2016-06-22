@@ -1,0 +1,189 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <ma-view-actions override="::formController.actions" entry="entry" entity="::formController.entity">
+                <ma-list-button ng-if="::entity.listView().enabled" label="{{ 'action.list' | trans }}" entity="::entity"></ma-list-button>
+                <ma-create-button ng-if="::entity.creationView().enabled" label="{{ 'action.new' | trans: {'entity_name': ' '} }}" entity="::entity"></ma-create-button>
+                <ma-delete-button ng-if="::entity.deletionView().enabled" label="{{ 'action.delete' | trans }}" entry="entry" entity="::entity"></ma-delete-button>
+            </ma-view-actions>
+            <h1 compile="::formController.title">
+                {{ 'action.edition_view' | trans }} {{ ::formController.entity.name() | humanize:true | singularize | trans }}  #{{ ::entry.identifierValue }}
+            </h1>
+            <p class="lead" ng-if="::formController.description" compile="::formController.description">{{ ::formController.description | trans }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="edit-view" ng-class="::'ng-admin-entity-' + formController.entity.name()">
+    <form class="col-lg-12" name="formController.form" ng-submit="formController.submitEdition($event)">
+        <!-- <div class="form-field form-group" ng-repeat="field in ::formController.fields track by $index">
+            <ma-field field="::field" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field>
+        </div> -->
+
+        <div class="bs-callout bs-callout-warning">
+            <div class="page-header">
+                <h4>Comercio <small>Datos de establecimiento</small></h4>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <ma-field-custom field="::formController.fields[0]" value="entry.values[formController.fields[0].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <ma-field-custom field="::formController.fields[1]" value="entry.values[formController.fields[1].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <ma-field-custom field="::formController.fields[2]" value="entry.values[formController.fields[2].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                </div>
+            </div>
+            <div class="row" ng-controller="DatepickerComercioController">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <label for="">Fecha de renovación de patente</label>
+                        <p class="input-group">
+                          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="entry.values[formController.fields[20].name()]" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-disabled="true"/>
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <label for="">Fecha de vencimiento de patente</label>
+                        <p class="input-group">
+                          <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="entry.values[formController.fields[21].name()]" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" ng-disabled="true"/>
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[22]" value="entry.values[formController.fields[22].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                        <span> {{entry.values[formController.fields[22].name()] | currency:"Bs.F "}} </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[3]" value="entry.values[formController.fields[3].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[4]" value="entry.values[formController.fields[4].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[5]" value="entry.values[formController.fields[5].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bs-callout bs-callout-info">
+            <div class="page-header">
+                <h4>Dirección <small>Ubicación establecimiento</small></h4>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[6]" value="entry.values[formController.fields[6].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[7]" value="entry.values[formController.fields[7].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[8]" value="entry.values[formController.fields[8].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[9]" value="entry.values[formController.fields[9].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[10]" value="entry.values[formController.fields[10].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[11]" value="entry.values[formController.fields[11].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bs-callout bs-callout-warning">
+            <div class="page-header">
+                <h4>Propietario <small></small></h4>
+            </div>
+            <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[12]" value="entry.values[formController.fields[12].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[13]" value="entry.values[formController.fields[13].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[14]" value="entry.values[formController.fields[14].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[15]" value="entry.values[formController.fields[15].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[16]" value="entry.values[formController.fields[16].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bs-callout bs-callout-info">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <ma-field-custom field="::formController.fields[17]" value="entry.values[formController.fields[17].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bs-callout bs-callout-info">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-horizontal">
+                    <div class="form-group">
+                        <ma-field field="::formController.fields[18]" value="entry.values[formController.fields[18].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field>
+                    </div>
+                    <div class="form-group">
+                        <fieldset ng-disabled="!entry.values[formController.fields[18].name()]">
+                            <ma-field field="::formController.fields[19]" value="entry.values[formController.fields[19].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> {{ 'action.save' | trans }}</button>
+            </div>
+        </div>
+    </form>
+</div>

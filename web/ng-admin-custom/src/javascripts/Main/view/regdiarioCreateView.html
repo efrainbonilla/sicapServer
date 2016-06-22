@@ -1,0 +1,136 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <ma-view-actions override="::formController.actions" entry="entry" entity="::formController.entity">
+                <ma-list-button ng-if="::entity.listView().enabled" label="{{ 'action.list' | trans }}" entity="::entity"></ma-list-button>
+            </ma-view-actions>
+            <h1 compile="::formController.title">
+                {{ 'action.creation_view' | trans }} {{ ::formController.view.entity.name() | humanize:true | singularize | trans }}
+            </h1>
+            <p class="lead" ng-if="::formController.description" compile="::formController.description">{{ ::formController.description | trans }}</p>
+        </div>
+    </div>
+</div>
+<div class="row" id="create-view" ng-class="::'ng-admin-entity-' + formController.entity.name()">
+    <form class="col-lg-12 " name="formController.form" ng-submit="formController.submitCreation($event)">
+
+        <!-- <div class="form-field form-group" ng-repeat="field in ::formController.fields track by $index">
+            <ma-field field="::field" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field>
+        </div> -->
+
+        <div class="bs-callout bs-callout-warning">
+            <div class="page-header">
+                <h4>Comercio <small></small></h4>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <fieldset id="ffilter">
+                        <ma-field-custom field="::formController.fields[0]" value="entry.values[formController.fields[0].name()]" entry="entry" entity="::entity" form="formController.form" datastore="::formController.dataStore"></ma-field-custom>
+                    </fieldset>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <sica-datagrid
+                        datastore="::formController.dataStore"
+                        formreg="::formController"
+                        form="formController.form"
+                        field="::formController.fields[0]"
+                        entry="entry"
+                        entity="::entity">
+                    </sica-datagrid>
+                </div>
+            </div>
+        </div>
+        <fieldset id="fform" disabled>
+            <sica-invoice
+                datastore="::formController.dataStore"
+                formreg="::formController"
+                form="formController.form"
+                field="::formController.fields[0]"
+                entry="entry"
+                entity="::entity">
+            </sica-invoice>
+
+            <sica-transport
+                datastore="::formController.dataStore"
+                formreg="::formController"
+                form="formController.form"
+                field="::formController.fields[0]"
+                entry="entry"
+                entity="::entity">
+            </sica-transport>
+
+
+            <div class="bs-callout bs-callout-info">
+                <div class="page-header">
+                    <h4>Fecha de Registro <small></small></h4>
+                </div>
+                <table class="table table-bordered" ng-controller="DatepickerRegdiarioController">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" ng-model="entry.values['optionDate']" value="dateNow" ng-checked="true">
+                                        Fecha actual
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <fieldset id="all" disabled>
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <p class="input-group">
+                                              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="entry.values['dateNow']" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" />
+                                              <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                                              </span>
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" ng-model="entry.values['optionDate']" value="dateOther">
+                                        Otra fecha
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <fieldset id="prod">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <p class="input-group">
+                                              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="entry.values['dateOther']" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-disabled="true"/>
+                                              <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                              </span>
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-5">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> {{ 'action.submit' | trans }}</button>
+                </div>
+            </div>
+        </fieldset>
+
+    </form>
+</div>

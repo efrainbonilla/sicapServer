@@ -1,0 +1,23 @@
+fos_user:
+    db_driver:      orm # otros valores válidos son 'mongodb', 'couchdb
+    firewall_name:  login # login, main
+    user_class:     AppBundle\Entity\User
+    service:
+        mailer:     app.mailer.twig_swift
+    registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address:        "%mailer_user%"
+                sender_name:    "%webapp_title% - REGISTRO DE USUARIO"
+            # template:
+    resetting:
+        email:
+            from_email:
+                address:        "%mailer_user%"
+                sender_name:    "%webapp_title% - RESTABLECER CONTRASEÑA"
+            # template:
+
+    from_email:
+        address:        "%mailer_user%"
+        sender_name:    "%webapp_title%"

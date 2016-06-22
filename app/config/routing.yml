@@ -1,0 +1,166 @@
+app_resetting_api:
+    resource: "@AppBundle/Controller/ResettingRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_registration_api:
+    resource: "@AppBundle/Controller/RegistrationRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_change_password_api:
+    resource: "@AppBundle/Controller/ChangePasswordRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_profile_api:
+    resource: "@AppBundle/Controller/ProfileRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_magnitud_api:
+    resource: "@AppBundle/Controller/MagnitudRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_prod_prestacion_api:
+    resource: "@AppBundle/Controller/ProdPrestacionRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_sgrupo_api:
+    resource: "@AppBundle/Controller/SgrupoRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_grupo_api:
+    resource: "@AppBundle/Controller/GrupoRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_categoria_api:
+    resource: "@AppBundle/Controller/CategoriaRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_medida_api:
+    resource: "@AppBundle/Controller/MedidaRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_com_repres_api:
+    resource: "@AppBundle/Controller/ComRepresRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_prod_limite_api:
+    resource: "@AppBundle/Controller/ProdLimiteRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_transp_modelo_api:
+    resource: "@AppBundle/Controller/TranspModeloRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_transp_marca_api:
+    resource: "@AppBundle/Controller/TranspMarcaRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_reg_diario_api:
+    resource: "@AppBundle/Controller/RegDiarioRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_producto_api:
+    resource: "@AppBundle/Controller/ProductoRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_tcomercio_api:
+    resource: "@AppBundle/Controller/TcomercioRESTController.php"
+    type:   rest
+    prefix:   /api
+
+
+app_zona_api:
+    resource: "@AppBundle/Controller/ZonaRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_parroquia_api:
+    resource: "@AppBundle/Controller/ParroquiaRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_municipio_api:
+    resource: "@AppBundle/Controller/MunicipioRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_estado_api:
+    resource: "@AppBundle/Controller/EstadoRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_pais_api:
+    resource: "@AppBundle/Controller/PaisRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_comercio_api:
+    resource: "@AppBundle/Controller/ComercioRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_utility_api:
+    resource: "@AppBundle/Controller/UtilityRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_user_api:
+    resource: "@AppBundle/Controller/UserRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app:
+    type:     annotation
+    resource: "@AppBundle/Controller/DefaultController.php"
+
+app_report:
+    type:     annotation
+    resource: "@AppBundle/Controller/ConsultasREPORTController.php"
+
+app_reporte_api:
+    resource: "@AppBundle/Controller/ReporteRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_ajuste_reporte_api:
+    resource: "@AppBundle/Controller/AjusteReporteRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_ajuste_api:
+    resource: "@AppBundle/Controller/AjusteRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_api:
+    resource: routing_api.yml
+    prefix: /api
+
+
+#FOS User routing
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# Doc Api
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc
+
+# translation
+_bazinga_jstranslation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"

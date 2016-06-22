@@ -1,0 +1,147 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <ma-view-actions override="::showController.actions" entry="entry" entity="::showController.entity">
+                <a class="btn btn-default" ng-click="open($event, 'show-view')" ng-controller="HandlePrintController">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;<span class="hidden-xs ng-binding">Imprimir</span>
+                </a>
+                <ma-create-button ng-if="::entity.creationView().enabled" label="{{ 'action.creation_view' | trans }}" entity="::entity"></ma-create-button>
+                <ma-list-button ng-if="::entity.listView().enabled" label="{{ 'action.list' | trans }}" entity="::entity"></ma-list-button>
+                <ma-edit-button ng-if="::entity.editionView().enabled" label="{{ 'action.edit' | trans }}" entry="entry" entity="::entity"></ma-edit-button>
+                <ma-delete-button ng-if="::entity.deletionView().enabled" label="{{ 'action.delete' | trans }}" entry="entry" entity="::entity"></ma-delete-button>
+            </ma-view-actions>
+            <h1 compile="::showController.title">
+                {{ 'action.detail' | trans }} {{ ::showController.view.entity.name() | humanize:true | singularize }}  #{{ ::entry.identifierValue }}
+            </h1>
+            <p class="lead" ng-if="::showController.description" compile="::showController.description">{{ ::showController.description }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="show-view">
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th>RIF</th>
+                    <th colspan="2">ESTABLECIMIENTO</th>
+                    <th colspan="2">PROPIETARIO</th>
+                </tr>
+                <tr>
+                    <td> {{ entry.values['com.com_rif'] }}</td>
+                    <td colspan="2">{{ entry.values['com.com_nomb_estb'] }}</td>
+                    <td colspan="2">{{ entry.values['com.com_prop'] }}</td>
+                </tr>
+                <tr>
+                    <th colspan="3">FECHA</th>
+                    <th colspan="2">HORA</th>
+                </tr>
+                <tr>
+                    <td colspan="3"> {{entry.values['reg_fech'] | amDateFormat:'LL'}}</td>
+                    <td colspan="2"> {{entry.values['reg_fech'] | amDateFormat: 'h:mm:ss a'}}</td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <table class="table table-bordered" ng-repeat="iteme in entry.values['fact']">
+                            <tbody>
+                                <tr ng-if="$first">
+                                    <th colspan="5"> FACTURAS </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="1"> N° FACTURA </th>
+                                    <th colspan="1"> TOTAL </th>
+                                    <th colspan="3">OBSERVACIÓN</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">{{iteme.fact_codi}}</td>
+                                    <td colspan="1">{{iteme.fact_total | currency:"Bs.F "}}</td>
+                                    <td colspan="3">{{iteme.fact_obs}}</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">PRODUCTOS</th>
+                                    <td colspan="4">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr ng-if="$first">
+                                                    <th colspan="2">PRODUCTO</th>
+                                                    <th>PRESTACIÓN PRODUCTO</th>
+                                                    <th>CANTIDAD</th>
+                                                    <th>UNIDAD DE MEDIDA</th>
+                                                </tr>
+                                                <tr ng-repeat="itemf in iteme.fact_prod">
+                                                    <td colspan="2">{{itemf.prod.prod_nomb}}</td>
+                                                    <td>{{itemf.prestc_num}} {{itemf.prestc_med.med_nomb}}</td>
+                                                    <td>{{itemf.fprod_cant}}</td>
+                                                    <td>{{itemf.med.med_nomb}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="5">
+                        <table class="table table-bordered" ng-repeat="itemg in  entry.values['transp']">
+                            <tbody>
+                                <tr ng-if="$first">
+                                    <th colspan="5"> TRANSPORTES </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="5"> VEHICULO </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">PLACA</th>
+                                    <th colspan="1">MARCA</th>
+                                    <th colspan="1">MODELO</th>
+                                    <th colspan="2">DESCRIPCIÓN</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">{{itemg.transp_placa}}</td>
+                                    <td colspan="1">{{itemg.marca.marca_nomb}}</td>
+                                    <td colspan="1">{{itemg.modelo.modelo_nomb}}</td>
+                                    <td colspan="2">{{itemg.transp_desc}}</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="5"> CONDUCTOR </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">CÉDULA</th>
+                                    <th colspan="1">NOMBRES</th>
+                                    <th colspan="1">APELLIDOS</th>
+                                    <th colspan="2">LICENCIA</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">{{itemg.chof_cedu}}</td>
+                                    <td colspan="1">{{itemg.chof_nomb}}</td>
+                                    <td colspan="1">{{itemg.chof_apell}}</td>
+                                    <td colspan="2">{{itemg.chof_num_lic}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">REGISTRADO POR USUARIO</th>
+                    <td colspan="3">{{ entry.values['user.username'] }}</td>
+                </tr>
+
+                <!-- <tr>
+                    <th colspan="3">FECHA R</th>
+                    <th colspan="2">HORA</th>
+                </tr> -->
+                <tr>
+                    <td colspan="3"> {{entry.values['reg_fech_create'] | amDateFormat:'LL'}}</td>
+                    <td colspan="2"> {{entry.values['reg_fech_create'] | amDateFormat: 'h:mm:ss a'}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
