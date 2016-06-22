@@ -105,6 +105,7 @@ define(function() {
 				.addChild(nga.menu(ComrepresAdminProvider.$get()))
 				.addChild(nga.menu(ProdlimiteAdminProvider.$get()))
 				.addChild(nga.menu(ProductoAdminProvider.$get()))
+				.addChild(nga.menu().title('Nuevo Registro diario').link('/regdiarios/create'))
 				.addChild(nga.menu(RegdiarioAdminProvider.$get()))
 				.addChild(nga.menu().title('Reportes').icon('<span class="fa fa-user"> </span>').link('/controlsicap/reportes'))
 			)
