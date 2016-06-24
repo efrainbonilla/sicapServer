@@ -7,7 +7,9 @@ class JasperPHPCustom extends JasperPHP
 {
     public function noscape()
     {
-        $this->the_command = str_replace('\\', '', $this->the_command);
+        if (!$this->windows) {
+            $this->the_command = str_replace('\\', '', $this->the_command);
+        }
 
         return $this;
     }

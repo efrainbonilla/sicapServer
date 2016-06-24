@@ -47,7 +47,6 @@ class Comercio
      */
     private $comNumPtte;
 
-
     /**
      * @var \Date
      *
@@ -55,7 +54,6 @@ class Comercio
      * @ORM\Column(name="com_fechptte_ini", type="date", nullable=true)
      */
     private $comFechptteIni;
-
 
     /**
      * @var \Date
@@ -777,7 +775,7 @@ class Comercio
     /**
      * Set comSadaChk
      *
-     * @param string $comSadaChk
+     * @param  string   $comSadaChk
      * @return Comercio
      */
     public function setComSadaChk($comSadaChk)
@@ -800,7 +798,7 @@ class Comercio
     /**
      * Set comSadaCodi
      *
-     * @param string $comSadaCodi
+     * @param  string   $comSadaCodi
      * @return Comercio
      */
     public function setComSadaCodi($comSadaCodi)

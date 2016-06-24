@@ -7,8 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ConsultasREPORTController extends ReportController
 {
@@ -53,8 +51,8 @@ class ConsultasREPORTController extends ReportController
             $this->setParameters(
                 array_merge(
                     array(
-                        'RPT_URI_WORKSPACE' => "\"" . dirname(realpath($this->jrxmlDir .'/' . $report . '.jasper')) . "\"" ,
-                        'RPT_DIRECTORY_SEPARATOR' => "\"" . DIRECTORY_SEPARATOR . "\""
+                        'RPT_URI_WORKSPACE' =>  dirname(realpath($this->jrxmlDir .'/' . $report . '.jasper')),
+                        'RPT_DIRECTORY_SEPARATOR' => DIRECTORY_SEPARATOR
                     ),
                     $param
                 )

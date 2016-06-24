@@ -18,38 +18,38 @@ class RegDiarioRepository extends CustomEntityRepository
         $to = new \DateTime($dateTo->format('Y-m-d').' 23:59:59');
 
         $sql = "SELECT
-		cat.cat_nomb AS grup1,
-		grup.grup_nomb AS grup2,
-		sgrup.sgrup_nomb AS grup3,
-		prod.prod_nomb AS producto,
-		prestacion.prestc AS prestacion,
-		SUM(factprod.fprod_cant) AS total,
-		cantidad.dnm_nomb AS denominacion
-		FROM reg_diario regd
-		INNER JOIN factura fact ON(regd.reg_id=fact.reg_id)
-		INNER JOIN fact_producto factprod ON(fact.fact_id=factprod.fact_id)
-		INNER JOIN producto prod ON(factprod.prod_id=prod.prod_id)
-		INNER JOIN categoria cat ON(prod.cat_id=cat.cat_id)
-		INNER JOIN grupo grup ON(prod.grup_id=grup.grup_id)
-		INNER JOIN sgrupo sgrup ON(prod.sgrup_id=sgrup.sgrup_id)
-		INNER JOIN (
-			SELECT
-			factprod.fprod_id,
-			CONCAT(factprod.prestc_num,' ', med.med_nomb) AS prestc,
-			CONCAT(factprod.prestc_num,' ', med.med_nomb, ' ', prod.prod_nomb) AS prestc_group
-			FROM fact_producto factprod
-			INNER JOIN producto prod ON(prod.prod_id=factprod.prod_id)
-			INNER JOIN medida med ON(med.med_id=factprod.prestc_med)
-		) AS prestacion ON(factprod.fprod_id=prestacion.fprod_id)
-		INNER JOIN (
-			SELECT
-			factprod.fprod_id,
-			CONCAT(factprod.fprod_cant,' ', med.med_nomb) AS dnm,
-			med.med_nomb AS dnm_nomb
-			FROM fact_producto factprod
-			INNER JOIN medida med ON(med.med_id=factprod.med_id)
-		) AS cantidad ON(factprod.fprod_id=cantidad.fprod_id)
-		WHERE ";
+        cat.cat_nomb AS grup1,
+        grup.grup_nomb AS grup2,
+        sgrup.sgrup_nomb AS grup3,
+        prod.prod_nomb AS producto,
+        prestacion.prestc AS prestacion,
+        SUM(factprod.fprod_cant) AS total,
+        cantidad.dnm_nomb AS denominacion
+        FROM reg_diario regd
+        INNER JOIN factura fact ON(regd.reg_id=fact.reg_id)
+        INNER JOIN fact_producto factprod ON(fact.fact_id=factprod.fact_id)
+        INNER JOIN producto prod ON(factprod.prod_id=prod.prod_id)
+        INNER JOIN categoria cat ON(prod.cat_id=cat.cat_id)
+        INNER JOIN grupo grup ON(prod.grup_id=grup.grup_id)
+        INNER JOIN sgrupo sgrup ON(prod.sgrup_id=sgrup.sgrup_id)
+        INNER JOIN (
+            SELECT
+            factprod.fprod_id,
+            CONCAT(factprod.prestc_num,' ', med.med_nomb) AS prestc,
+            CONCAT(factprod.prestc_num,' ', med.med_nomb, ' ', prod.prod_nomb) AS prestc_group
+            FROM fact_producto factprod
+            INNER JOIN producto prod ON(prod.prod_id=factprod.prod_id)
+            INNER JOIN medida med ON(med.med_id=factprod.prestc_med)
+        ) AS prestacion ON(factprod.fprod_id=prestacion.fprod_id)
+        INNER JOIN (
+            SELECT
+            factprod.fprod_id,
+            CONCAT(factprod.fprod_cant,' ', med.med_nomb) AS dnm,
+            med.med_nomb AS dnm_nomb
+            FROM fact_producto factprod
+            INNER JOIN medida med ON(med.med_id=factprod.med_id)
+        ) AS cantidad ON(factprod.fprod_id=cantidad.fprod_id)
+        WHERE ";
 
         if (in_array('comId', array_keys($data))) {
             $sql .= 'regd.com_id = :com_id AND ';
@@ -72,7 +72,7 @@ class RegDiarioRepository extends CustomEntityRepository
         }
 
         $sql .= 'regd.reg_fech BETWEEN :date_from AND :date_to
-		GROUP BY prestacion.prestc_group';
+        GROUP BY prestacion.prestc_group';
 
         $stmt = $this->getEntityManager()
                     ->getConnection()

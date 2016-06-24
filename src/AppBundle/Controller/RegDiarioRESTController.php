@@ -112,7 +112,6 @@ class RegDiarioRESTController extends VoryxController
             return FOSView::create('Error en el formulario', Codes::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-
         foreach (array('dateNow', 'dateOther', 'optionDate') as $item) {
             if (!in_array($item, array_keys($data))) {
                 return FOSView::create('Clave '. $item . ' Error en el formulario', Codes::HTTP_INTERNAL_SERVER_ERROR);
@@ -128,7 +127,6 @@ class RegDiarioRESTController extends VoryxController
             $dateOther = new \DateTime($dateOther);
             $request->request->set('regFech', $dateOther->format('Y-m-d') . ' ' . $now->format('H:i:s'));
         }
-
 
         $handle_error = false;
         foreach ($transports as $key => $value) {
@@ -300,7 +298,6 @@ class RegDiarioRESTController extends VoryxController
             return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-
 
     /**
      * Get GuiaComerciante entity

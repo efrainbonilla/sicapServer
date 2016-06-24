@@ -50,7 +50,6 @@ class TranspModelo
      */
     private $marca;
 
-
     /**
      * @var string
      *
@@ -154,7 +153,7 @@ class TranspModelo
     /**
      * Set modeloAnio
      *
-     * @param integer $modeloAnio
+     * @param  integer      $modeloAnio
      * @return TranspModelo
      */
     public function setModeloAnio($modeloAnio)
@@ -167,7 +166,7 @@ class TranspModelo
     /**
      * Get modeloAnio
      *
-     * @return integer 
+     * @return integer
      */
     public function getModeloAnio()
     {

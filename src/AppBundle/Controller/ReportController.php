@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Controller\JasperPHPCustom;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,7 +38,6 @@ class ReportController extends Controller
      * @var array
      */
     public $parameters = array('IS_IGNORE_PAGINATION' => 'false');
-
 
     /**
      * Parameters Default

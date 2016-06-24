@@ -466,7 +466,6 @@ class ComercioRESTController extends VoryxController
         );
     }
 
-
     /**
      * Get all Comercio entities.
      *

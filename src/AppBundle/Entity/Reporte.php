@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Util\Utility;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,7 +46,7 @@ class Reporte
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,7 +56,7 @@ class Reporte
     /**
      * Set rptModule
      *
-     * @param string $rptModule
+     * @param  string  $rptModule
      * @return Reporte
      */
     public function setRptModule($rptModule)
@@ -70,7 +69,7 @@ class Reporte
     /**
      * Get rptModule
      *
-     * @return string 
+     * @return string
      */
     public function getRptModule()
     {
@@ -80,7 +79,7 @@ class Reporte
     /**
      * Set rptKey
      *
-     * @param string $rptKey
+     * @param  string  $rptKey
      * @return Reporte
      */
     public function setRptKey($rptKey)
@@ -93,7 +92,7 @@ class Reporte
     /**
      * Get rptKey
      *
-     * @return string 
+     * @return string
      */
     public function getRptKey()
     {
@@ -103,7 +102,7 @@ class Reporte
     /**
      * Set rptValue
      *
-     * @param string $rptValue
+     * @param  string  $rptValue
      * @return Reporte
      */
     public function setRptValue($rptValue)
@@ -116,7 +115,7 @@ class Reporte
     /**
      * Get rptValue
      *
-     * @return string 
+     * @return string
      */
     public function getRptValue()
     {

@@ -5,7 +5,6 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Ajuste;
 use AppBundle\Entity\AjusteReporte;
 use AppBundle\Entity\Categoria;
-use AppBundle\Entity\Denominacion;
 use AppBundle\Entity\Estado;
 use AppBundle\Entity\Grupo;
 use AppBundle\Entity\Magnitud;

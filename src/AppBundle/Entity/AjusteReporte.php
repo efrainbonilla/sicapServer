@@ -67,7 +67,7 @@ class AjusteReporte
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -77,7 +77,7 @@ class AjusteReporte
     /**
      * Set module
      *
-     * @param string $module
+     * @param  string        $module
      * @return AjusteReporte
      */
     public function setModule($module)
@@ -90,7 +90,7 @@ class AjusteReporte
     /**
      * Get module
      *
-     * @return string 
+     * @return string
      */
     public function getModule()
     {
@@ -100,7 +100,7 @@ class AjusteReporte
     /**
      * Set group
      *
-     * @param string $group
+     * @param  string        $group
      * @return AjusteReporte
      */
     public function setGroup($group)
@@ -113,7 +113,7 @@ class AjusteReporte
     /**
      * Get group
      *
-     * @return string 
+     * @return string
      */
     public function getGroup()
     {
@@ -123,7 +123,7 @@ class AjusteReporte
     /**
      * Set api
      *
-     * @param string $api
+     * @param  string        $api
      * @return AjusteReporte
      */
     public function setApi($api)
@@ -136,7 +136,7 @@ class AjusteReporte
     /**
      * Get api
      *
-     * @return string 
+     * @return string
      */
     public function getApi()
     {
@@ -146,7 +146,7 @@ class AjusteReporte
     /**
      * Set action
      *
-     * @param string $action
+     * @param  string        $action
      * @return AjusteReporte
      */
     public function setAction($action)
@@ -159,7 +159,7 @@ class AjusteReporte
     /**
      * Get action
      *
-     * @return string 
+     * @return string
      */
     public function getAction()
     {
@@ -169,7 +169,7 @@ class AjusteReporte
     /**
      * Set key
      *
-     * @param string $key
+     * @param  string        $key
      * @return AjusteReporte
      */
     public function setKey($key)
@@ -182,7 +182,7 @@ class AjusteReporte
     /**
      * Get key
      *
-     * @return string 
+     * @return string
      */
     public function getKey()
     {
@@ -192,7 +192,7 @@ class AjusteReporte
     /**
      * Set value
      *
-     * @param string $value
+     * @param  string        $value
      * @return AjusteReporte
      */
     public function setValue($value)
@@ -205,7 +205,7 @@ class AjusteReporte
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
