@@ -65,10 +65,27 @@ class ReportController extends Controller
     {
         $this->jasper = new JasperPHPCustom;
 
+        $this->paramDatabase();
+
         $rootDir = $this->getParameter('kernel.root_dir');
 
         $this->reportDir =  $rootDir . '/../web/reports';
-        $this->jrxmlDir =  $rootDir . '/../../sicapReport';
+
+        if (!isset($this->dbParameters['RPT_PATH_DIR'])) {
+            throw new \Exception("Your report has an error! Not defined RPT_PATH_DIR in database.", 1);
+        } else {
+            $path = realpath($this->dbParameters['RPT_PATH_DIR']);
+            if ($path !== false && is_dir($path)) {
+                $this->jrxmlDir =  $path;
+            } else {
+                $path = realpath($rootDir . $this->dbParameters['RPT_PATH_DIR']);
+                if ($path !== false && is_dir($path)) {
+                    $this->jrxmlDir =  $path;
+                } else {
+                    throw new \Exception("Your report has an error! Not defined path dir report.", 1);
+                }
+            }
+        }
 
         $this->outputFilename = time() . '_';
 
@@ -182,5 +199,29 @@ class ReportController extends Controller
         $url = $this->getRequest()->getUriForPath('/reports/'. $this->outputFilename. '.' . $ext);
 
         return $this->redirect($url);
+    }
+
+    /**
+     * Parameters get database entity ajuste
+     * @return void
+     */
+    public function paramDatabase()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $this->dbParameters = $em->getRepository('AppBundle:Ajuste')->getAjustes();
+    }
+
+    /**
+     * Parameters get database dbParameters
+     * @return array
+     */
+    public function getParamDatabase()
+    {
+        $param = array();
+        foreach ($this->dbParameters as $key => $value) {
+            $param[$key] = "\"" . $value . "\"";
+        }
+
+        return $param;
     }
 }

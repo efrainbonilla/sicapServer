@@ -45,7 +45,7 @@ class ConsultasREPORTController extends ReportController
 
         $this->initialize();
 
-        $param = array_merge($param, $this->rptParamDatabase());
+        $param = array_merge($param, $this->getParamDatabase());
 
         if (count($param)) {
             $this->setParameters(
@@ -66,18 +66,5 @@ class ConsultasREPORTController extends ReportController
         $file = $this->reportDir . '/' . $this->outputFilename . '.' . $format;
 
         return $this->outputFile($file, $format);
-    }
-
-    public function rptParamDatabase()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $data = $em->getRepository('AppBundle:Ajuste')->getAjustes();
-
-        $param = array();
-        foreach ($data as $key => $value) {
-            $param[$key] = "\"" . $value . "\"";
-        }
-
-        return $param;
     }
 }
